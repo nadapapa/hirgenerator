@@ -2,7 +2,7 @@
 include("feeds.php");
 
 // kiválasztani pár feed linkjét random
-$randFeedsKey = array_rand($feed_links, 10);
+$randFeedsKey = array_rand($feed_links, 20);
 
 $textArr = array();
 foreach ($randFeedsKey as $feed_key) {
@@ -30,30 +30,39 @@ foreach ($randFeedsKey as $feed_key) {
       $textArr[] = $sentence;
 		}
 }
-
+$count = count($textArr)-1;
 $output = array();
 for ($i=0; $i < 20; $i++) {
   $newSentence = array();
 
-  $gram1 = $textArr[array_rand($textArr)];
+  $gram1 = $textArr[mt_rand(0, $count)];
 
   $newSentence += $gram1[0];
 
 do {
-  $gram2 = $textArr[array_rand($textArr)];
+  $gram2 = $textArr[mt_rand(0, $count)];
+  $end = end($newSentence);
+  if ($end == $gram2[0]) {
+    array_pop($newSentence);}
   $newSentence = array_merge($newSentence, $gram2[1]);
 
-} while (count($newSentence, 1) < 4);
+
+} while (count($newSentence, 1) < 5);
 
   $output[] = $newSentence;
 }
 
 $news ="";
 foreach ($output as $new) {
-  $news .= '<li class="list-group-item"><h4>'.implode(" ", array_values($new))."</h4></li>";
+  $news .= '
+  <li class="list-group-item">
+    <h3>
+      <b>'.implode(" ", array_values($new)).'</b>
+      <button id="like" type="button" class="btn btn-primary">
+        <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true">
+      </button>
+    </h3>
+  </li>';
 }
-
-echo '<ul class="list-group">';
 echo $news;
-echo "</ul>"
  ?>
