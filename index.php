@@ -23,7 +23,7 @@
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-	<script src="ajax.js"></script>
+	<script src="ajax.min.js"></script>
 
 
 		  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
